@@ -1,0 +1,7 @@
+{
+  "name": "SimpleMigraineTracker",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
