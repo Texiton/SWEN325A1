@@ -10,10 +10,10 @@ import {
   IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import { ellipse, square, triangle, barChartOutline } from 'ionicons/icons';
+import ListMigraines from './pages/ListMigraines';
+import AddMigraine from './pages/AddMigraine';
+import Highlights from './pages/Highlights';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -33,33 +33,36 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import {Name, NameContextProvider, NameContextConsumer} from './NameState';
 
 const App: React.FC = () => (
   <IonApp>
+    <NameContextProvider value = {{name: ""}}>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route path="/tab1" component={Tab1} exact={true} />
-          <Route path="/tab2" component={Tab2} exact={true} />
-          <Route path="/tab3" component={Tab3} />
-          <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
+          <Route path="/listmigrainestab" component={ListMigraines} exact={true} />
+          <Route path="/addmigrainetab" component={AddMigraine} exact={true} />
+          <Route path="/highlightstab" component={Highlights} />
+          <Route path="/" render={() => <Redirect to="/listmigrainestab" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
+          <IonTabButton tab="listmigrainestab" href="/listmigrainestab">
             <IonIcon icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+            <IonLabel>List Migraines</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
+          <IonTabButton tab="addmigrainetab" href="/addmigrainetab">
             <IonIcon icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+            <IonLabel>Add Migraine</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+          <IonTabButton tab="highlightstab" href="/highlightstab">
+            <IonIcon icon ={barChartOutline} />
+            <IonLabel>Highlights</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
+    </NameContextProvider>
   </IonApp>
 );
 
